@@ -16,6 +16,7 @@ class _InicioPageState extends State<InicioPage>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text(widget.title),
         leading: IconButton(
           icon: Icon(Icons.menu),

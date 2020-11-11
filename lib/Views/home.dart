@@ -1,6 +1,9 @@
-import 'package:clinica_frontend/Views/Home/habitaciones.dart';
-import 'package:clinica_frontend/Views/Home/inicio.dart';
+
+import 'package:clinica_frontend/Views/Pacientes/pacientes.dart';
 import 'package:flutter/material.dart';
+
+import 'habitaciones.dart';
+import 'inicio.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -44,7 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
   GlobalKey<ScaffoldState> _key=new GlobalKey();
   List<DrawerItem> _drawerItems=[
     new DrawerItem("Inicio", new InicioPage(title: "Inicio",)),
-    new DrawerItem("Habitaciones", new HabitacionesPage(title: "Habitaciones",))
+    new DrawerItem("Habitaciones", new HabitacionesPage(title: "Habitaciones",)),
+    new DrawerItem("Pacientes", new PacientesPage(title: "Pacientes",))
   ];
 
   DrawerItem _selectedView;
@@ -63,6 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+
     return Scaffold(
       key: _key,
       drawer: Drawer(
@@ -82,13 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
           itemCount: _drawerItems.length,
         ),
       ),
-      body: _selectedView.widget,
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: _selectedView.widget,// This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
