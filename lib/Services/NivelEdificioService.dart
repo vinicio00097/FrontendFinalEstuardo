@@ -3,6 +3,7 @@ import 'package:clinica_frontend/Models/NivelEdificio.dart';
 import 'package:http/http.dart' as http;
 
 class NivelEdificioService implements INivelEdificioDao{
+  String _baseURL="https://bitdatasolution.com/";
   @override
   Future add(NivelEdificio obj) {
     // TODO: implement add
@@ -19,7 +20,7 @@ class NivelEdificioService implements INivelEdificioDao{
   Future getAll() async {
     try{
       var response=await http.get(
-          "http://localhost:8081/NivelesEdificio"
+          "${_baseURL}NivelesEdificio"
       );
 
       if(response.statusCode==200){

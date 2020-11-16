@@ -6,11 +6,12 @@ import 'package:clinica_frontend/Models/CitaPaciente.dart';
 import 'package:http/http.dart' as http;
 
 class CitaService implements ICitaDao{
+  String _baseURL="https://bitdatasolution.com/";
   @override
   Future add(CitaPaciente obj) async {
     try{
       var response=await http.post(
-          "http://localhost:8081/Pacientes/Citas/Create",
+          "${_baseURL}Pacientes/Citas/Create",
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(obj)
       );
@@ -30,7 +31,7 @@ class CitaService implements ICitaDao{
   Future delete(int id) async {
     try{
       var response=await http.delete(
-          "http://localhost:8081/Pacientes/Citas/Delete/${id}"
+          "${_baseURL}Pacientes/Citas/Delete/${id}"
       );
 
       if(response.statusCode==200){
@@ -54,7 +55,7 @@ class CitaService implements ICitaDao{
   Future update(CitaPaciente obj) async {
     try{
       var response=await http.put(
-          "http://localhost:8081/Pacientes/Citas/Edit",
+          "${_baseURL}Pacientes/Citas/Edit",
           headers: {"Content-Type": "application/json"},
           body: jsonEncode(obj)
       );

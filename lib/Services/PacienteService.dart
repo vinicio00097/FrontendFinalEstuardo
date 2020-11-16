@@ -5,11 +5,12 @@ import 'package:clinica_frontend/Models/Paciente.dart';
 import 'package:http/http.dart' as http;
 
 class PacienteServices implements IPacienteDao{
+  String _baseURL="https://bitdatasolution.com/";
   @override
   Future add(Paciente obj) async {
     try{
       var response=await http.post(
-          "http://localhost:8081/Pacientes/Create",
+          "${_baseURL}Pacientes/Create",
           headers: {"Content-Type": "application/json"},
         body: jsonEncode(obj)
       );
@@ -29,7 +30,7 @@ class PacienteServices implements IPacienteDao{
   Future delete(int id) async {
     try{
       var response=await http.delete(
-          "http://localhost:8081/Pacientes/Delete/$id",
+          "${_baseURL}Pacientes/Delete/$id",
       );
 
       if(response.statusCode==200){
@@ -46,7 +47,7 @@ class PacienteServices implements IPacienteDao{
   Future getAll() async {
     try{
       var response=await http.get(
-          "http://localhost:8081/Pacientes"
+          "${_baseURL}Pacientes"
       );
 
       if(response.statusCode==200){
@@ -63,7 +64,7 @@ class PacienteServices implements IPacienteDao{
   Future update(Paciente obj) async {
     try{
       var response=await http.put(
-          "http://localhost:8081/Pacientes/Update",
+          "${_baseURL}Pacientes/Update",
           headers: {"Content-Type": "application/json"},
           body: jsonEncode(obj)
       );
@@ -83,7 +84,7 @@ class PacienteServices implements IPacienteDao{
   Future updateInternado(Paciente obj) async {
     try{
       var response=await http.put(
-          "http://localhost:8081/Pacientes/Internados/Update",
+          "${_baseURL}Pacientes/Internados/Update",
           headers: {"Content-Type": "application/json"},
           body: jsonEncode(obj)
       );

@@ -5,6 +5,8 @@ import 'package:clinica_frontend/Models/Habitacion.dart';
 import 'package:http/http.dart' as http;
 
 class HabitacionService implements IHabitacion{
+  String _baseURL="https://bitdatasolution.com/";
+
   @override
   Future add(Habitacion obj) {
     // TODO: implement add
@@ -21,7 +23,7 @@ class HabitacionService implements IHabitacion{
   Future getAll() async {
     try{
       var response=await http.get(
-          "http://localhost:8081/Habitaciones"
+          "${_baseURL}Habitaciones"
       );
 
       if(response.statusCode==200){
@@ -39,7 +41,7 @@ class HabitacionService implements IHabitacion{
   Future update(Habitacion obj) async {
     try{
       var response=await http.put(
-          "http://localhost:8081/Habitaciones/Edit",
+          "${_baseURL}Habitaciones/Edit",
           headers: {"Content-Type": "application/json"},
         body: jsonEncode(obj)
       );

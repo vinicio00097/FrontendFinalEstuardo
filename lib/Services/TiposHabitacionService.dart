@@ -3,6 +3,8 @@ import 'package:clinica_frontend/Models/TipoHabitacion.dart';
 import 'package:http/http.dart' as http;
 
 class TiposHabitacion implements ITipoHabitacionDao{
+  String _baseURL="https://bitdatasolution.com/";
+
   @override
   Future add(TipoHabitacion obj) {
     // TODO: implement add
@@ -19,7 +21,7 @@ class TiposHabitacion implements ITipoHabitacionDao{
   Future getAll() async {
     try{
       var response=await http.get(
-          "http://localhost:8081/TiposHabitacion"
+          "${_baseURL}TiposHabitacion"
       );
 
       if(response.statusCode==200){

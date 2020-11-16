@@ -3,6 +3,7 @@ import 'package:clinica_frontend/Models/Ubicacion.dart';
 import 'package:http/http.dart' as http;
 
 class UbicacionService implements IUbicacionDao{
+  String _baseURL="https://bitdatasolution.com/";
   @override
   Future add(Ubicacion obj) {
     // TODO: implement add
@@ -19,7 +20,7 @@ class UbicacionService implements IUbicacionDao{
   Future getAll() async {
     try{
       var response=await http.get(
-          "http://localhost:8081/Ubicaciones"
+          "${_baseURL}Ubicaciones"
       );
 
       if(response.statusCode==200){

@@ -3,6 +3,8 @@ import 'package:clinica_frontend/Models/Personal.dart';
 import 'package:http/http.dart' as http;
 
 class PersonalService implements IPersonalDao{
+  String _baseURL="https://bitdatasolution.com/";
+
   @override
   Future add(Personal obj) {
     // TODO: implement add
@@ -19,7 +21,7 @@ class PersonalService implements IPersonalDao{
   Future getAll() async {
     try{
       var response=await http.get(
-          "http://localhost:8081/Personal"
+          "${_baseURL}Personal"
       );
       if(response.statusCode==200){
         return [1,response.body];
