@@ -3,7 +3,7 @@ import 'package:clinica_frontend/Models/Ubicacion.dart';
 import 'package:http/http.dart' as http;
 
 class UbicacionService implements IUbicacionDao{
-  String _baseURL="https://bitdatasolution.com/";
+  String _baseURL="https://bitdatasolution.com/clinica/";
   @override
   Future add(Ubicacion obj) {
     // TODO: implement add

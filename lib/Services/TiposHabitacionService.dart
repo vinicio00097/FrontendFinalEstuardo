@@ -3,7 +3,7 @@ import 'package:clinica_frontend/Models/TipoHabitacion.dart';
 import 'package:http/http.dart' as http;
 
 class TiposHabitacion implements ITipoHabitacionDao{
-  String _baseURL="https://bitdatasolution.com/";
+  String _baseURL="https://bitdatasolution.com/clinica/";
 
   @override
   Future add(TipoHabitacion obj) {

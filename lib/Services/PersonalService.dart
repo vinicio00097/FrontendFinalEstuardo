@@ -3,7 +3,7 @@ import 'package:clinica_frontend/Models/Personal.dart';
 import 'package:http/http.dart' as http;
 
 class PersonalService implements IPersonalDao{
-  String _baseURL="https://bitdatasolution.com/";
+  String _baseURL="https://bitdatasolution.com/clinica/";
 
   @override
   Future add(Personal obj) {

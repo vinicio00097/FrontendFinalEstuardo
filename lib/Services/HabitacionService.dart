@@ -5,7 +5,7 @@ import 'package:clinica_frontend/Models/Habitacion.dart';
 import 'package:http/http.dart' as http;
 
 class HabitacionService implements IHabitacion{
-  String _baseURL="https://bitdatasolution.com/";
+  String _baseURL="https://bitdatasolution.com/clinica/";
 
   @override
   Future add(Habitacion obj) {

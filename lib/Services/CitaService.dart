@@ -6,7 +6,7 @@ import 'package:clinica_frontend/Models/CitaPaciente.dart';
 import 'package:http/http.dart' as http;
 
 class CitaService implements ICitaDao{
-  String _baseURL="https://bitdatasolution.com/";
+  String _baseURL="https://bitdatasolution.com/clinica/";
   @override
   Future add(CitaPaciente obj) async {
     try{

@@ -3,7 +3,7 @@ import 'package:clinica_frontend/Models/NivelEdificio.dart';
 import 'package:http/http.dart' as http;
 
 class NivelEdificioService implements INivelEdificioDao{
-  String _baseURL="https://bitdatasolution.com/";
+  String _baseURL="https://bitdatasolution.com/clinica/";
   @override
   Future add(NivelEdificio obj) {
     // TODO: implement add
