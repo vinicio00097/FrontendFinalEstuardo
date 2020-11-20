@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 class PacienteServices implements IPacienteDao{
   String _baseURL="https://bitdatasolution.com/clinica/";
+  String _baseURL2="http://localhost:8081/";
   @override
   Future add(Paciente obj) async {
     try{

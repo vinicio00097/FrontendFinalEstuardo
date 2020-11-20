@@ -1,17 +1,20 @@
 import 'package:clinica_frontend/Models/CitaPaciente.dart';
+import 'package:clinica_frontend/Models/Medicina.dart';
 import 'package:clinica_frontend/Models/Paciente.dart';
 import 'package:clinica_frontend/Models/Personal.dart';
 import 'package:clinica_frontend/ViewModel/CitasVM.dart';
+import 'package:clinica_frontend/Views/Pacientes/medicamentosDialog.dart';
 import 'package:clinica_frontend/Views/Pacientes/newEditCitaDialog.dart';
 import 'package:flutter/material.dart';
 
 class CitasHistory extends StatefulWidget{
-  CitasHistory({Key key,this.title,this.citas,this.personal,this.idPaciente}):super(key: key);
+  CitasHistory({Key key,this.title,this.citas,this.personal,this.idPaciente,this.medicinas}):super(key: key);
 
   final title;
   final List<CitaPaciente> citas;
   final List<Personal> personal;
   final int idPaciente;
+  List<Medicina> medicinas;
 
   @override
   State<StatefulWidget> createState() {
@@ -87,6 +90,22 @@ class CitasHistoryState extends State<CitasHistory>{
     });
   }
 
+  void showMedicamentos(CitaPaciente cita){
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context){
+        return MedicamentosDialog(
+          title: "Medicamentos cita ${widget.citas.indexOf(cita)+1}",
+          cita: cita,
+          medicinas: widget.medicinas,
+        );
+      }
+    ).then((value) {
+      print(value);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -100,6 +119,7 @@ class CitasHistoryState extends State<CitasHistory>{
                 shrinkWrap: true,
                 itemBuilder: (context,index){
                   return ListTile(
+                    leading: Text((index+1).toString()),
                     title: Text("Fecha de cita"),
                     subtitle: Text(widget.citas[index].fechaCita.toString().split(".")[0]),
                     trailing: PopupMenuButton(
@@ -112,6 +132,9 @@ class CitasHistoryState extends State<CitasHistory>{
                           case "editar":
                             editCita(widget.citas[index]);
                             break;
+                          case "medicamentos":
+                            showMedicamentos(widget.citas[index]);
+                            break;
                         }
                       },
                       itemBuilder: (context)=><PopupMenuEntry<String>>[
@@ -121,7 +144,7 @@ class CitasHistoryState extends State<CitasHistory>{
                         ),
                         PopupMenuItem(
                           value: "medicamentos",
-                          child: Text("Agregar medicamentos"),
+                          child: Text("Medicamentos"),
                         ),
                         PopupMenuItem(
                           value: "editar",

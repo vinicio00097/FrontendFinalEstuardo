@@ -2,10 +2,12 @@ import 'dart:convert';
 import 'dart:js_util';
 
 import 'package:clinica_frontend/Models/Habitacion.dart';
+import 'package:clinica_frontend/Models/Medicina.dart';
 import 'package:clinica_frontend/Models/Paciente.dart';
 import 'package:clinica_frontend/Models/PacienteInternado.dart';
 import 'package:clinica_frontend/Models/Personal.dart';
 import 'package:clinica_frontend/ViewModel/HabitacionesVM.dart';
+import 'package:clinica_frontend/ViewModel/MedicinasVM.dart';
 import 'package:clinica_frontend/ViewModel/PacientesVM.dart';
 import 'package:clinica_frontend/ViewModel/PersonalVM.dart';
 import 'package:clinica_frontend/Views/Pacientes/NewEditPacienteDialog.dart';
@@ -30,11 +32,13 @@ class PacientesState extends State<PacientesPage>{
   PacientesVM _pacientesVM=new PacientesVM();
   PersonalVM _personalVM=new PersonalVM();
   HabitacionesVM _habitacionesVM=new HabitacionesVM();
+  MedicinasVM _medicinasVM=new MedicinasVM();
   bool _allLoaded=false;
 
   List<Paciente> _pacientesData=[];
   List<Personal> _personalData=[];
   List<Habitacion> _habiacionesData=[];
+  List<Medicina> _medicinasData=[];
 
   @override
   void initState() {
@@ -46,13 +50,14 @@ class PacientesState extends State<PacientesPage>{
     /*List responsePacientes=await _pacientesVM.getAll();
     List responsePersonal=await _personalVM.getAll();
     List responseHabitaciones=await _habitacionesVM.getAllHabitaciones();*/
-    List responses= await Future.wait([ _pacientesVM.getAll(),_personalVM.getAll(),_habitacionesVM.getAllHabitaciones()]);
+    List responses= await Future.wait([ _pacientesVM.getAll(),_personalVM.getAll(),_habitacionesVM.getAllHabitaciones(),_medicinasVM.getAll()]);
     _allLoaded=true;
 
-    if(responses[0][0]==1&&responses[1][0]==1&&responses[2][0]==1){
+    if(responses[0][0]==1&&responses[1][0]==1&&responses[2][0]==1&&responses[3][0]==1){
       _pacientesData=responses[0][1];
       _personalData=responses[1][1];
       _habiacionesData=responses[2][1];
+      _medicinasData=responses[3][1];
 
       setState(() {
       });
@@ -108,10 +113,11 @@ class PacientesState extends State<PacientesPage>{
       context: context,
       builder: (context){
         return CitasHistory(
-          title: "Citas Paciente",
+          title: "Citas paciente ${paciente.primerNombre} ${paciente.segundoNombre}",
           citas: paciente.citas,
           personal: _personalData,
           idPaciente: paciente.idPaciente,
+          medicinas: _medicinasData,
         );
       }
     ).then((value) {

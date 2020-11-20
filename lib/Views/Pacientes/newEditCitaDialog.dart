@@ -154,6 +154,8 @@ class NewEditCitaState extends State<NewEditCita>{
         FlatButton(
           child: Text("Guardar"),
           onPressed: (){
+            hora.text.length>4?hora.text:hora.text="0"+hora.text;
+
             if(kform.currentState.validate()){
               CitaPaciente citapaciente=new CitaPaciente(
                 paciente: new Paciente(idPaciente: widget.idPaciente),
